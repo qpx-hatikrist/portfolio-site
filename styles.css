@@ -1,0 +1,2048 @@
+/* Портфолио: профессиональное оформление в духе Power BI Kit */
+
+:root {
+  --bg-page: #131416;
+  --bg-page-top: #1a1b1e;
+  --bg-card: #1e1f23;
+  --bg-card-hover: #25262b;
+  --bg-elevated: #25262b;
+  --text: #f0f0f2;
+  --text-muted: #94969c;
+  --accent: #f59e0b;
+  --accent-soft: rgba(245, 158, 11, 0.12);
+  --powerbi-yellow: #b89b09;
+  --powerbi-soft: rgba(184, 155, 9, 0.12);
+  --sql-green: #15803d;
+  --sql-green-soft: rgba(21, 128, 61, 0.12);
+  --python-blue: #5b21b6;
+  --python-blue-soft: rgba(91, 33, 182, 0.12);
+  --border: #2d2e33;
+  --border-light: #383a40;
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.4);
+  --font: 'Manrope', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --space-section: 2rem;
+  --scrollbar-track: #1a1b1e;
+  --scrollbar-thumb: #383a40;
+  --scrollbar-thumb-hover: #52545c;
+}
+
+/* Светлая тема — мягкая, как на проф. сайтах: тёплый off-white, без чисто белого */
+[data-theme="light"] {
+  --bg-page: #f2f1ee;
+  --bg-page-top: #f8f7f4;
+  --bg-card: #fafaf8;
+  --bg-card-hover: #f4f3f0;
+  --bg-elevated: #fdfcf9;
+  --text: #2c2b28;
+  --text-muted: #6b6560;
+  --accent: #c76a0a;
+  --accent-soft: rgba(199, 106, 10, 0.1);
+  --powerbi-yellow: #8b6914;
+  --powerbi-soft: rgba(139, 105, 20, 0.1);
+  --sql-green: #166534;
+  --sql-green-soft: rgba(22, 101, 52, 0.1);
+  --python-blue: #4c1d95;
+  --python-blue-soft: rgba(76, 29, 149, 0.1);
+  --border: #e6e4e0;
+  --border-light: #d4d2ce;
+  --shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --scrollbar-track: #ebeae7;
+  --scrollbar-thumb: #c4c2be;
+  --scrollbar-thumb-hover: #6b6560;
+}
+
+[data-theme="light"] body {
+  background-image: radial-gradient(ellipse 120% 80% at 50% -20%, var(--bg-page-top) 0%, var(--bg-page) 65%);
+}
+
+/* Язык: показываем только выбранный */
+[data-lang="ru"] .lang-en {
+  display: none !important;
+}
+[data-lang="en"] .lang-ru {
+  display: none !important;
+}
+
+/* Кнопки темы: показываем иконку и подпись в зависимости от текущей темы */
+[data-theme="dark"] .theme-icon-moon,
+[data-theme="dark"] .theme-label-dark {
+  display: none !important;
+}
+[data-theme="dark"] .theme-icon-sun,
+[data-theme="dark"] .theme-label-light {
+  display: inline !important;
+}
+[data-theme="light"] .theme-icon-sun,
+[data-theme="light"] .theme-label-light {
+  display: none !important;
+}
+[data-theme="light"] .theme-icon-moon,
+[data-theme="light"] .theme-label-dark {
+  display: inline !important;
+}
+
+/* Язык: на кнопке показываем противоположный (переключить на EN / на RU) */
+[data-lang="ru"] .lang-lbl-en {
+  display: inline !important;
+}
+[data-lang="ru"] .lang-lbl-ru {
+  display: none !important;
+}
+[data-lang="en"] .lang-lbl-ru {
+  display: inline !important;
+}
+[data-lang="en"] .lang-lbl-en {
+  display: none !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Кастомный скроллбар в стиле сайта */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+html::-webkit-scrollbar {
+  width: 10px;
+}
+html::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+html::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 10px;
+  border: 2px solid var(--scrollbar-track);
+}
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+html::-webkit-scrollbar-corner {
+  background: var(--scrollbar-track);
+}
+
+/* Такой же скроллбар для блоков с overflow (код, карусели и т.д.) */
+.code-block-wrap,
+.code-block,
+.carousel-track-wrap {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+.code-block-wrap::-webkit-scrollbar,
+.code-block::-webkit-scrollbar,
+.carousel-track-wrap::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+.code-block-wrap::-webkit-scrollbar-track,
+.code-block::-webkit-scrollbar-track,
+.carousel-track-wrap::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+.code-block-wrap::-webkit-scrollbar-thumb,
+.code-block::-webkit-scrollbar-thumb,
+.carousel-track-wrap::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 8px;
+}
+.code-block-wrap::-webkit-scrollbar-thumb:hover,
+.code-block::-webkit-scrollbar-thumb:hover,
+.carousel-track-wrap::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg-page);
+  background-image: radial-gradient(ellipse 120% 80% at 50% -20%, var(--bg-page-top) 0%, var(--bg-page) 70%);
+  padding: 2rem clamp(1rem, 4vw, 3rem) 4rem;
+}
+
+/* Фон: сфера из частиц (canvas) — в шапке карточки */
+.card {
+  position: relative;
+  z-index: 1;
+  max-width: min(1280px, 94vw);
+  margin: 0 auto;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.particle-sphere {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: min(100vh, 560px);
+  z-index: 0;
+  pointer-events: none;
+}
+/* Hero — верх карточки, поверх canvas с частицами */
+.hero {
+  position: relative;
+  z-index: 1;
+  padding: 8rem clamp(1.5rem, 4vw, 3rem) 2.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(19,20,22,0.12) 0%, rgba(19,20,22,0.4) 50%, var(--bg-card) 88%);
+  pointer-events: none;
+}
+[data-theme="light"] .hero::before {
+  background: linear-gradient(to bottom, rgba(242,241,238,0.08) 0%, rgba(242,241,238,0.35) 50%, var(--bg-card) 88%);
+}
+
+.control-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.65rem;
+  font-family: var(--font);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.control-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.theme-icon {
+  display: none !important;
+}
+
+.control-lang .lang-lbl {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.avatar-btn {
+  display: block;
+  margin: 0 auto 1.25rem;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 50%;
+  line-height: 0;
+  transition: transform 0.2s;
+}
+.avatar-btn:hover {
+  transform: scale(1.03);
+}
+.avatar-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.avatar {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--border-light);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+}
+[data-theme="light"] .avatar {
+  border-color: var(--border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.avatar-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+.avatar-lightbox[aria-hidden="false"] {
+  opacity: 1;
+  visibility: visible;
+}
+.avatar-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+}
+.avatar-lightbox-inner {
+  position: relative;
+  max-width: min(280px, 85vw);
+  max-height: min(280px, 85vw);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--bg-elevated);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+.avatar-lightbox-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.avatar-lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  color: var(--text);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+.avatar-lightbox-close:hover {
+  opacity: 1;
+}
+
+.hero h1 {
+  margin: 0 0 0.4rem;
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.tagline {
+  margin: 0 0 1.5rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+}
+
+/* ----- Анимации: появление при загрузке (герой) и при прокрутке ----- */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-pending .hero .avatar-btn {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .hero-pending .hero h1 {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease 0.08s, transform 0.6s ease 0.08s;
+  }
+  .hero-pending .hero .tagline {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease 0.16s, transform 0.6s ease 0.16s;
+  }
+  .nav-links {
+    transition: opacity 0.5s ease 0.24s, transform 0.5s ease 0.24s;
+  }
+  .hero-pending .nav-links {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  body:not(.hero-pending) .hero .avatar-btn,
+  body:not(.hero-pending) .hero h1,
+  body:not(.hero-pending) .hero .tagline,
+  body:not(.hero-pending) .nav-links {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-links {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0.65rem clamp(1rem, 3vw, 2rem);
+  background: var(--bg-page);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.nav-links a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background: var(--accent-soft);
+  color: #fbbf24;
+}
+
+/* Иконки в навбаре: тема (солнце/луна) и язык (планета с выпадающим списком) */
+.nav-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 36px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.nav-icon-btn:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+.nav-icon-btn .theme-icon {
+  display: block;
+  line-height: 0;
+}
+[data-theme="dark"] .theme-icon-moon {
+  display: none !important;
+}
+[data-theme="light"] .theme-icon-sun {
+  display: none !important;
+}
+
+.nav-lang {
+  position: relative;
+  margin-left: 0.25rem;
+}
+.nav-lang-trigger {
+  margin: 0;
+}
+.nav-lang-icon {
+  display: block;
+  line-height: 0;
+}
+.nav-lang-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.35rem;
+  padding: 0.35rem;
+  min-width: 120px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.nav-lang:hover .nav-lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+.nav-lang-option {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-family: var(--font);
+  font-weight: 500;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.nav-lang-option:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* Отступ у hero под фиксированную навигацию */
+.hero {
+  padding-top: 8rem;
+}
+
+/* При клике по якорю — секция/карточка не уходит под навбар */
+section[id],
+article[id] {
+  scroll-margin-top: 3.5rem;
+}
+
+/* Секции */
+.section {
+  padding: 2rem clamp(1.5rem, 4vw, 3rem);
+  border-bottom: 1px solid var(--border);
+}
+
+.section:last-of-type {
+  border-bottom: none;
+}
+
+.section-heading {
+  margin: 0 0 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.section-heading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 28px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
+.section h2:not(.section-heading) {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.section p {
+  margin: 0;
+  color: var(--text);
+}
+
+/* Навыки */
+.skills-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skills-list li {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 0.4rem 0.85rem;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+/* Блок навыков Power BI без эмоджи */
+.powerbi-skills-section {
+  margin: 3rem auto 2rem auto;
+  text-align: center;
+  background: linear-gradient(135deg, #1a1b1e 0%, #23242a 100%);
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(184, 155, 9, 0.08);
+  padding: 2.5rem 0 2rem 0;
+  max-width: 1200px;
+  width: 100%;
+}
+[data-theme="light"] .powerbi-skills-section {
+  background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-page) 100%);
+}
+.powerbi-skills-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--powerbi-yellow);
+  margin-bottom: 2rem;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+.powerbi-skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0 1rem;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.powerbi-skill {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 1.2rem 0.7rem 1rem 0.7rem;
+  max-width: 180px;
+  flex: 1 1 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+[data-theme="dark"] .powerbi-skill {
+  background: linear-gradient(135deg, #23242a 0%, #292a2f 100%);
+}
+.powerbi-skill-icon {
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.powerbi-skill-icon .powerbi-icon-bg {
+  fill: var(--powerbi-yellow);
+  transition: fill 0.2s ease;
+}
+.powerbi-skill-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #25262b;
+}
+[data-theme="dark"] .powerbi-skill-title {
+  color: #f0f0f2;
+}
+.powerbi-skill-desc {
+  font-size: 0.92rem;
+  color: #5c5e66;
+  line-height: 1.4;
+}
+[data-theme="dark"] .powerbi-skill-desc {
+  color: #b8b9c0;
+}
+.powerbi-skill {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.2s;
+}
+.powerbi-skill.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.powerbi-skill:hover {
+  box-shadow: 0 8px 32px rgba(245, 212, 58, 0.27);
+  transform: translateY(-4px) scale(1.04);
+}
+.powerbi-skill.visible:hover {
+  transform: translateY(-4px) scale(1.04);
+}
+
+/* Проекты */
+.projects-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.project-card {
+  padding: 1.5rem;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.project-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.project-card p {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.project-card .link {
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.project-card .link:hover {
+  text-decoration: underline;
+}
+
+/* Контакты */
+.contact-section {
+  padding-bottom: 2rem;
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+}
+
+.contact-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.contact-link:hover {
+  border-bottom-color: var(--accent);
+  color: #fbbf24;
+}
+
+/* Почта в контактах: тултип при наведении */
+.contact-link-email {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.contact-email-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(calc(-50% + 24px)) translateY(-6px);
+  padding: 0.4rem 0.75rem;
+  background: var(--bg-elevated);
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+  pointer-events: none;
+}
+.contact-link-email:hover .contact-email-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(calc(-50% + 24px)) translateY(-4px);
+}
+.contact-link-email.contact-email-copied .contact-email-label {
+  color: var(--sql-green);
+}
+
+/* Подвал */
+.footer {
+  padding: 1.25rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ——— Секция «Мои работы» ——— */
+.works-section .section-desc {
+  margin: -0.25rem 0 1.75rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 42ch;
+}
+
+/* Карточки работ (профессиональный вид) */
+.work-card {
+  margin-bottom: 1.75rem;
+  padding: 1.75rem;
+  background: var(--bg-elevated);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.work-card:hover {
+  border-color: var(--border-light);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+}
+
+.work-card--powerbi {
+  position: relative;
+  background: linear-gradient(135deg, rgba(184, 155, 9, 0.06) 0%, var(--bg-elevated) 18%);
+}
+.work-card--powerbi::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.75rem;
+  bottom: 1.75rem;
+  width: 2px;
+  transition: background 0.2s ease;
+  background:
+    radial-gradient(circle at 0.25px 0.75px, transparent 0.25px, var(--powerbi-yellow) 0.75px),
+    radial-gradient(circle at 0.25px calc(100% - 0.75px), transparent 0.25px, var(--powerbi-yellow) 0.75px),
+    linear-gradient(var(--powerbi-yellow), var(--powerbi-yellow)) 0 0.75px / 0.5px calc(100% - 1.5px) no-repeat;
+  background-repeat: no-repeat;
+  background-position: 0 0, 0 100%, 0 0.75px;
+  z-index: 0;
+}
+.work-card--powerbi:hover::before {
+  background:
+    radial-gradient(circle at 0.25px 0.75px, transparent 0.25px, #f5d43a 0.75px),
+    radial-gradient(circle at 0.25px calc(100% - 0.75px), transparent 0.25px, #f5d43a 0.75px),
+    linear-gradient(#f5d43a, #f5d43a) 0 0.75px / 0.5px calc(100% - 1.5px) no-repeat;
+  background-repeat: no-repeat;
+  background-position: 0 0, 0 100%, 0 0.75px;
+}
+
+/* Убрать ограничения для Power BI блока */
+.work-card--powerbi {
+  max-width: none !important;
+  overflow: visible !important;
+}
+.powerbi-layout {
+  max-width: none !important;
+  overflow: visible !important;
+}
+
+/* Power BI: слева текст, справа компактная карусель */
+.powerbi-layout {
+  display: flex;
+  gap: 1.75rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.powerbi-about {
+  flex: 1;
+  min-width: 260px;
+  max-width: 420px;
+}
+
+.powerbi-about-title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.powerbi-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.powerbi-desc p {
+  margin: 0 0 0.5rem;
+}
+
+.powerbi-desc p:last-child {
+  margin-bottom: 0;
+}
+
+.powerbi-carousel-wrap {
+  flex: 0 0 780px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.powerbi-carousel-wrap .carousel-track-wrap {
+  aspect-ratio: 16 / 9;
+  max-height: 465px;
+}
+
+.work-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+
+.work-card--powerbi .work-badge {
+  color: var(--powerbi-yellow);
+  transition: color 0.2s ease;
+}
+.work-card--powerbi .work-block-title {
+  color: var(--powerbi-yellow);
+  transition: color 0.2s ease;
+}
+
+.work-block-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.work-subtitle {
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  max-width: 52ch;
+}
+
+.work-features {
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.work-features li {
+  font-size: 0.8rem;
+  padding: 0.35rem 0.75rem;
+  background: var(--powerbi-soft);
+  color: var(--powerbi-yellow);
+  border-radius: 6px;
+  border: 1px solid rgba(184, 155, 9, 0.25);
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.work-cta {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.work-cta:hover {
+  color: #fbbf24;
+  border-bottom-color: var(--accent);
+}
+
+.work-card--powerbi .work-cta {
+  color: var(--powerbi-yellow);
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+}
+
+.work-card--powerbi .work-cta:hover {
+  color: #f5d43a;
+  border-bottom-color: #f5d43a;
+}
+
+/* При наведении на карточку Power BI — подсветка (яркий жёлтый) */
+.work-card--powerbi:hover .work-badge,
+.work-card--powerbi:hover .work-block-title {
+  color: #f5d43a;
+}
+.work-card--powerbi:hover .work-features li {
+  background: rgba(245, 212, 58, 0.18);
+  color: #f5d43a;
+  border-color: rgba(245, 212, 58, 0.4);
+}
+.work-card--powerbi:hover .work-cta {
+  color: #f5d43a;
+  border-bottom-color: #f5d43a;
+}
+.work-card--powerbi:hover .powerbi-skills-heading {
+  color: #f5d43a;
+}
+.work-card--powerbi:hover .powerbi-skill-icon .powerbi-icon-bg {
+  fill: #f5d43a;
+}
+
+/* SQL — та же стилистика, что и Power BI (карточка, жёлтая полоска слева) */
+.work-card--sql {
+  position: relative;
+  background: linear-gradient(135deg, rgba(21, 128, 61, 0.06) 0%, var(--bg-elevated) 18%);
+}
+.work-card--sql::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.75rem;
+  bottom: 1.75rem;
+  width: 2px;
+  transition: background 0.2s ease;
+  background:
+    radial-gradient(circle at 0.25px 0.75px, transparent 0.25px, var(--sql-green) 0.75px),
+    radial-gradient(circle at 0.25px calc(100% - 0.75px), transparent 0.25px, var(--sql-green) 0.75px),
+    linear-gradient(var(--sql-green), var(--sql-green)) 0 0.75px / 0.5px calc(100% - 1.5px) no-repeat;
+  background-repeat: no-repeat;
+  background-position: 0 0, 0 100%, 0 0.75px;
+  z-index: 0;
+}
+.work-card--sql:hover::before {
+  background:
+    radial-gradient(circle at 0.25px 0.75px, transparent 0.25px, #22c55e 0.75px),
+    radial-gradient(circle at 0.25px calc(100% - 0.75px), transparent 0.25px, #22c55e 0.75px),
+    linear-gradient(#22c55e, #22c55e) 0 0.75px / 0.5px calc(100% - 1.5px) no-repeat;
+  background-repeat: no-repeat;
+  background-position: 0 0, 0 100%, 0 0.75px;
+}
+.work-card--sql .work-badge {
+  color: var(--sql-green);
+  transition: color 0.2s ease;
+}
+.work-card--sql .work-block-title {
+  color: var(--sql-green);
+  transition: color 0.2s ease;
+}
+.work-card--sql .work-features li {
+  background: var(--sql-green-soft);
+  color: var(--sql-green);
+  border: 1px solid rgba(21, 128, 61, 0.25);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.work-card--sql .work-cta {
+  color: var(--sql-green);
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+}
+.work-card--sql .work-cta:hover {
+  color: #22c55e;
+  border-bottom-color: var(--sql-green);
+}
+/* При наведении на карточку SQL — все зелёные элементы ярче */
+.work-card--sql:hover .work-badge,
+.work-card--sql:hover .work-block-title {
+  color: #22c55e;
+}
+.work-card--sql:hover .work-features li {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+  border-color: rgba(34, 197, 94, 0.35);
+}
+.work-card--sql:hover .work-cta {
+  color: #22c55e;
+  border-bottom-color: #22c55e;
+}
+.work-card--sql:hover .sql-skills-heading {
+  color: #22c55e;
+}
+.work-card--sql:hover .sql-skill-icon .sql-icon-bg {
+  fill: #22c55e;
+}
+
+/* Data Science / Python & ML — синяя стилистика (как Power BI/SQL) */
+.work-card--python {
+  position: relative;
+  background: linear-gradient(135deg, rgba(91, 33, 182, 0.06) 0%, var(--bg-elevated) 18%);
+}
+.work-card--python::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.75rem;
+  bottom: 1.75rem;
+  width: 2px;
+  transition: background 0.2s ease;
+  background:
+    radial-gradient(circle at 0.25px 0.75px, transparent 0.25px, var(--python-blue) 0.75px),
+    radial-gradient(circle at 0.25px calc(100% - 0.75px), transparent 0.25px, var(--python-blue) 0.75px),
+    linear-gradient(var(--python-blue), var(--python-blue)) 0 0.75px / 0.5px calc(100% - 1.5px) no-repeat;
+  background-repeat: no-repeat;
+  background-position: 0 0, 0 100%, 0 0.75px;
+  z-index: 0;
+}
+.work-card--python:hover::before {
+  background:
+    radial-gradient(circle at 0.25px 0.75px, transparent 0.25px, #8b5cf6 0.75px),
+    radial-gradient(circle at 0.25px calc(100% - 0.75px), transparent 0.25px, #8b5cf6 0.75px),
+    linear-gradient(#8b5cf6, #8b5cf6) 0 0.75px / 0.5px calc(100% - 1.5px) no-repeat;
+  background-repeat: no-repeat;
+  background-position: 0 0, 0 100%, 0 0.75px;
+}
+.work-card--python .work-badge {
+  color: var(--python-blue);
+  transition: color 0.2s ease;
+}
+.work-card--python .work-block-title {
+  color: var(--python-blue);
+  transition: color 0.2s ease;
+}
+.work-card--python .work-features li {
+  background: var(--python-blue-soft);
+  color: var(--python-blue);
+  border: 1px solid rgba(91, 33, 182, 0.25);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.work-card--python .work-cta {
+  color: var(--python-blue);
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+}
+.work-card--python .work-cta:hover {
+  color: #8b5cf6;
+  border-bottom-color: #8b5cf6;
+}
+/* При наведении на карточку Python — подсветка (фиолетовый) */
+.work-card--python:hover .work-badge,
+.work-card--python:hover .work-block-title {
+  color: #8b5cf6;
+}
+.work-card--python:hover .work-features li {
+  background: rgba(139, 92, 246, 0.15);
+  color: #8b5cf6;
+  border-color: rgba(139, 92, 246, 0.35);
+}
+.work-card--python:hover .work-cta {
+  color: #8b5cf6;
+  border-bottom-color: #8b5cf6;
+}
+.work-card--python:hover .python-skills-heading {
+  color: #8b5cf6;
+}
+.work-card--python:hover .python-skill .python-icon-bg {
+  background: #8b5cf6;
+  color: #fff;
+}
+
+/* Python: заголовок примера и блок навыков */
+.python-result-title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--python-blue);
+  transition: color 0.2s ease;
+}
+.work-card--python:hover .python-result-title {
+  color: #8b5cf6;
+}
+
+/* Вкладки Python: Визуализация | Анализ данных | Machine Learning */
+.python-notebook-wrap {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.python-notebook-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+.python-notebook-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: var(--font);
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.python-tab-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+}
+.python-tab-icon svg {
+  display: block;
+}
+.python-tab-label {
+  letter-spacing: 0.02em;
+}
+.python-notebook-tab:hover {
+  color: var(--python-blue);
+  border-color: rgba(91, 33, 182, 0.4);
+  background: var(--python-blue-soft);
+}
+.python-notebook-tab.active {
+  color: var(--python-blue);
+  border-color: var(--python-blue);
+  background: var(--python-blue-soft);
+}
+.work-card--python:hover .python-notebook-tab.active {
+  color: #8b5cf6;
+  border-color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.15);
+}
+.python-notebook-panel {
+  display: none;
+}
+.python-notebook-panel.active {
+  display: block;
+}
+.notebook-embed-frame {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #fff;
+  min-height: 400px;
+}
+.notebook-embed-frame .notebook-iframe {
+  width: 100%;
+  height: 400px;
+  border: none;
+  display: block;
+}
+.notebook-embed-hint {
+  margin: 0.75rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.notebook-embed-hint code {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.15rem 0.4rem;
+  background: var(--bg-elevated);
+  border-radius: 4px;
+}
+.notebook-embed-cta {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--python-blue);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.notebook-embed-cta:hover {
+  color: #8b5cf6;
+}
+
+/* Блок запуска ноутбука (Colab / Binder) — без iframe, без nbviewer */
+.notebook-launch-block {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #1a1b1e 0%, #23242a 100%);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+[data-theme="light"] .notebook-launch-block {
+  background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-page) 100%);
+}
+.notebook-launch-desc {
+  margin: 0 0 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+.work-card--python .notebook-launch-desc {
+  color: var(--accent);
+  font-weight: 700;
+}
+.work-card--python:hover .notebook-launch-desc {
+  color: #fbbf24;
+}
+.notebook-project-name {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 1.08rem;
+  margin-right: 0.25rem;
+  letter-spacing: 0.01em;
+}
+.work-card--python .notebook-project-name {
+  color: var(--accent);
+}
+.work-card--python:hover .notebook-project-name {
+  color: #fbbf24;
+}
+.notebook-launch-desc code {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 0.15rem 0.4rem;
+  background: var(--bg-elevated);
+  border-radius: 4px;
+}
+.notebook-launch-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+.notebook-launch-btn {
+  display: inline-block;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: var(--font);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.notebook-launch-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.notebook-launch-btn--colab {
+  background: #f9ab00;
+  color: #1a1a1a;
+  border: 1px solid #e09400;
+}
+.notebook-launch-btn--binder {
+  background: #f37726;
+  color: #fff;
+  border: 1px solid #d6651a;
+}
+.notebook-launch-cta {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--python-blue);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.notebook-launch-cta:hover {
+  color: #8b5cf6;
+}
+
+.python-skills-section {
+  margin: 2.5rem auto 0;
+  text-align: center;
+  background: linear-gradient(135deg, #1a1b1e 0%, #23242a 100%);
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(91, 33, 182, 0.08);
+  padding: 2rem 1.5rem;
+  max-width: 1200px;
+  width: 100%;
+}
+[data-theme="light"] .python-skills-section {
+  background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-page) 100%);
+}
+.python-skills-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--python-blue);
+  margin-bottom: 1.75rem;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+.python-skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  justify-content: center;
+  align-items: stretch;
+}
+.python-skill {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.2rem 1rem;
+  min-width: 140px;
+  max-width: 200px;
+  flex: 1 1 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.2s ease;
+}
+.python-skill.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-theme="dark"] .python-skill {
+  background: linear-gradient(135deg, #23242a 0%, #292a2f 100%);
+}
+.python-skill:hover {
+  box-shadow: 0 8px 32px rgba(91, 33, 182, 0.25);
+  transform: translateY(-4px) scale(1.02);
+}
+.python-skill.visible:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+.python-skill-icon {
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.python-icon-bg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--python-blue);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.python-skill-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #25262b;
+}
+[data-theme="dark"] .python-skill-title {
+  color: #f0f0f2;
+}
+.python-skill-desc {
+  font-size: 0.85rem;
+  color: #5c5e66;
+  line-height: 1.35;
+}
+[data-theme="dark"] .python-skill-desc {
+  color: #b8b9c0;
+}
+
+/* Навыки и инструменты SQL — такой же блок, как у Power BI */
+.sql-skills-section {
+  margin: 2.5rem auto 0;
+  text-align: center;
+  background: linear-gradient(135deg, #1a1b1e 0%, #23242a 100%);
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  padding: 2.5rem 0 2rem 0;
+  max-width: 1200px;
+  width: 100%;
+}
+[data-theme="light"] .sql-skills-section {
+  background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-page) 100%);
+}
+.sql-skills-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--sql-green);
+  margin-bottom: 1.75rem;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+.sql-skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0 1rem;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.sql-skill {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.2rem 0.7rem 1rem 0.7rem;
+  max-width: 180px;
+  flex: 1 1 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.2s;
+}
+.sql-skill.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-theme="dark"] .sql-skill {
+  background: linear-gradient(135deg, #23242a 0%, #292a2f 100%);
+}
+.sql-skill:hover {
+  box-shadow: 0 8px 32px rgba(21, 128, 61, 0.27);
+  transform: translateY(-4px) scale(1.04);
+}
+.sql-skill.visible:hover {
+  transform: translateY(-4px) scale(1.04);
+}
+.sql-skill-icon {
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sql-skill-icon .sql-icon-bg {
+  fill: var(--sql-green);
+  transition: fill 0.2s ease;
+}
+.sql-skill-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #25262b;
+}
+[data-theme="dark"] .sql-skill-title {
+  color: #f0f0f2;
+}
+.sql-skill-desc {
+  font-size: 0.92rem;
+  color: #5c5e66;
+  line-height: 1.4;
+}
+[data-theme="dark"] .sql-skill-desc {
+  color: #b8b9c0;
+}
+
+.work-desc {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.work-note {
+  margin: 0.75rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Карусель дашбордов Power BI — 16:9, клик и автопроигрывание */
+.dashboard-carousel {
+  position: relative;
+  margin: 0 auto;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.carousel-track-wrap {
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  aspect-ratio: 16 / 9;
+}
+
+.carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  height: 100%;
+}
+
+.dashboard-preview {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-preview img {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  object-fit: contain;
+  border-radius: 8px;
+  background: var(--bg-card);
+}
+
+/* Встраивание Power BI (iframe) — интерактивный отчёт как в Power BI */
+.carousel-embed {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  border: none;
+  border-radius: 8px;
+  background: var(--bg-page);
+}
+
+.dashboard-preview:has(.carousel-embed) {
+  padding: 0;
+}
+
+.dashboard-preview:has(.carousel-embed) .carousel-embed {
+  display: block;
+  height: 100%;
+  min-height: 200px;
+}
+
+.dashboard-caption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.work-card--powerbi .carousel-dots button.active {
+  background: var(--powerbi-yellow);
+}
+
+.powerbi-carousel-wrap .carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+.powerbi-carousel-wrap .carousel-arrow--prev {
+  left: 12px;
+}
+.powerbi-carousel-wrap .carousel-arrow--next {
+  right: 12px;
+}
+.powerbi-carousel-wrap .carousel-arrow:hover {
+  background: var(--powerbi-soft);
+  border-color: var(--powerbi-yellow);
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.carousel-autoplay-hint {
+  display: block;
+  text-align: center;
+  margin-top: 0.35rem;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  opacity: 0.85;
+}
+
+.carousel-dots button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: var(--border);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.carousel-dots button:hover {
+  background: var(--text-muted);
+}
+
+.carousel-dots button.active {
+  background: var(--accent);
+  transform: scale(1.2);
+}
+
+/* PNG Power BI: полноэкранная карусель */
+.dashboard-carousel--png {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+.carousel-track-wrap--png {
+  aspect-ratio: 16 / 9;
+  max-height: 480px;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.dashboard-preview--png img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  display: block;
+}
+.dashboard-preview--png {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+}
+.dashboard-carousel--png .carousel-dots {
+  margin-top: 1rem;
+}
+.dashboard-carousel--png .carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.5rem;
+  color: var(--accent);
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s, border-color 0.2s;
+}
+.dashboard-carousel--png .carousel-arrow--prev {
+  left: 12px;
+}
+.dashboard-carousel--png .carousel-arrow--next {
+  right: 12px;
+}
+.dashboard-carousel--png .carousel-arrow:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+/* Корректировка максимальной PNG-карусели */
+.dashboard-carousel--png-max {
+  width: 100%;
+  max-width: 1100px;
+  margin: 2rem auto;
+  position: relative;
+  padding: 0;
+}
+.carousel-track-wrap--png-max {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: 600px;
+  max-height: 600px;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin: 0 auto;
+}
+.dashboard-preview--png-max img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+  display: block;
+  background: var(--bg-card);
+}
+.dashboard-preview--png-max {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  margin: 0;
+  padding: 0;
+}
+.dashboard-carousel--png-max .carousel-dots {
+  margin-top: 1rem;
+}
+.dashboard-carousel--png-max .carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 2rem;
+  color: var(--accent);
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dashboard-carousel--png-max .carousel-arrow--prev {
+  left: 24px;
+}
+.dashboard-carousel--png-max .carousel-arrow--next {
+  right: 24px;
+}
+.dashboard-carousel--png-max .carousel-arrow:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+/* Несколько примеров SQL — вкладки */
+.sql-examples {
+  margin-bottom: 0.5rem;
+}
+.sql-examples-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+.sql-tab {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: var(--font);
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.sql-tab:hover {
+  color: var(--sql-green);
+  border-color: rgba(21, 128, 61, 0.4);
+  background: var(--sql-green-soft);
+}
+.sql-tab.active {
+  color: var(--sql-green);
+  border-color: var(--sql-green);
+  background: var(--sql-green-soft);
+}
+.work-card--sql:hover .sql-tab.active {
+  color: #22c55e;
+  border-color: #22c55e;
+  background: rgba(34, 197, 94, 0.15);
+}
+.sql-example-panel {
+  display: none;
+}
+.sql-example-panel.active {
+  display: block;
+}
+.sql-example-panel .code-block-wrap {
+  margin-bottom: 1rem;
+}
+.sql-example-panel .code-block-wrap:last-child {
+  margin-bottom: 0;
+}
+
+/* Блоки кода (SQL, Python) */
+.code-block-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #161719;
+  margin: 0 0 0.5rem;
+}
+
+.code-block-wrap--half {
+  flex: 1;
+  min-width: 0;
+}
+
+.code-block {
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: #e4e4e7;
+  overflow-x: auto;
+}
+
+.code-block[data-lang]::before {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.code-block[data-lang="sql"]::before {
+  content: "SQL";
+}
+
+.code-block[data-lang="python"]::before {
+  content: "Python";
+}
+
+.code-block code {
+  color: #a5f3fc;
+}
+
+.code-block code .comment {
+  color: #6b7280;
+}
+
+/* Python-демо: код + превью графика */
+.python-demo {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.chart-preview {
+  flex: 1;
+  min-width: 200px;
+  max-width: 420px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-page);
+  padding: 0.75rem;
+}
+
+.chart-preview img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
+.chart-label {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Python: только результат (график + ссылка на ноутбук) */
+.python-result {
+  margin-top: 0.5rem;
+}
+
+.chart-preview--standalone {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Появление карточек при скролле */
+.work-block {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.work-block.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Адаптив */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem 0.75rem 3rem;
+  }
+
+  .hero {
+    padding: 7rem 1.25rem 1.5rem;
+  }
+
+  section[id],
+  article[id] {
+    scroll-margin-top: 3rem;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .section {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .python-demo {
+    flex-direction: column;
+  }
+
+  .chart-preview {
+    max-width: 100%;
+  }
+
+  .work-card {
+    padding: 1.25rem;
+  }
+
+  .work-block-title {
+    font-size: 1.1rem;
+  }
+
+  .work-features {
+    margin-bottom: 1rem;
+  }
+
+  .powerbi-layout {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .powerbi-about {
+    max-width: 100%;
+  }
+
+  .powerbi-carousel-wrap {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .powerbi-carousel-wrap .carousel-track-wrap {
+    max-height: 200px;
+  }
+
+}
+

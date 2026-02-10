@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark" data-lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Гусаров Даниил — Портфолио</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="hero-pending">
+  <div class="card">
+    <canvas id="particle-sphere" class="particle-sphere" aria-hidden="true"></canvas>
+    <header class="hero">
+      <button type="button" class="avatar-btn" aria-label="Увеличить фото">
+            <div class="avatar"><img src="images/photo/photo_here.jpg" alt="" /></div>
+          </button>
+      <h1><span class="lang-ru">Гусаров Даниил</span><span class="lang-en">Gusarov Daniil</span></h1>
+      <p class="tagline"><span class="lang-ru">Аналитика данных · Data Science · Визуализация и ML</span><span class="lang-en">Data Analytics · Data Science · Visualization & ML</span></p>
+      <nav class="nav-links">
+        <a href="#about"><span class="lang-ru">Обо мне</span><span class="lang-en">About</span></a>
+        <a href="#skills"><span class="lang-ru">Навыки</span><span class="lang-en">Skills</span></a>
+        <a href="#work-powerbi">Power BI</a>
+        <a href="#sql">SQL</a>
+        <a href="#work-python"><span class="lang-ru">Python & ML</span><span class="lang-en">Python & ML</span></a>
+        <a href="#contact"><span class="lang-ru">Контакты</span><span class="lang-en">Contact</span></a>
+        <button type="button" class="nav-icon-btn control-theme" aria-label="Переключить тему" title="Тема">
+          <span class="theme-icon theme-icon-sun" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
+          <span class="theme-icon theme-icon-moon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        </button>
+        <div class="nav-lang">
+          <button type="button" class="nav-icon-btn nav-lang-trigger" aria-label="Язык" aria-expanded="false" aria-haspopup="true" title="Язык">
+            <span class="nav-lang-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+          </button>
+          <div class="nav-lang-dropdown" role="menu">
+            <button type="button" class="nav-lang-option" data-lang="ru" role="menuitem">Русский</button>
+            <button type="button" class="nav-lang-option" data-lang="en" role="menuitem">English</button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section id="about" class="section" data-reveal>
+        <h2 class="section-heading"><span class="lang-ru">Обо мне</span><span class="lang-en">About me</span></h2>
+        <p class="about-text">
+          <span class="lang-ru">Специалист в области аналитики данных и Data Science с упором на практику: визуализация и отчёты в Power BI, работа с данными в SQL, реализация и сравнение моделей машинного обучения на Python. Понимаю подходы к данным и оценке моделей. Внимателен к деталям и аккуратен в коде. Открыт к проектам и командам, где могу приносить пользу и развивать экспертизу в аналитике и ML.</span>
+          <span class="lang-en">Data analytics and Data Science practitioner: dashboards and reports in Power BI, data work in SQL, implementing and comparing ML models in Python. I understand approaches to data and model evaluation. I pay attention to details and write careful code. Open to projects and teams where I can contribute and grow my expertise in analytics and ML.</span>
+        </p>
+      </section>
+
+      <section id="skills" class="section" data-reveal>
+        <h2 class="section-heading"><span class="lang-ru">Навыки</span><span class="lang-en">Skills</span></h2>
+        <ul class="skills-list">
+          <li>Python</li>
+          <li>MySQL</li>
+          <li>pandas</li>
+          <li>matplotlib</li>
+          <li>seaborn</li>
+          <li>numpy</li>
+          <li>Power BI</li>
+          <li>Data Science</li>
+          <li>Machine Learning</li>
+          <li>sklearn</li>
+        </ul>
+      </section>
+
+      <section id="works" class="section works-section" data-reveal>
+        <h2 class="section-heading"><span class="lang-ru">Мои работы</span><span class="lang-en">My work</span></h2>
+        <p class="section-desc"><span class="lang-ru">Проекты по визуализации, аналитике и Data Science — от дашбордов до кода.</span><span class="lang-en">Visualization, analytics and Data Science projects — dashboards to code.</span></p>
+
+        <!-- Power BI: слева — описание, справа — компактная карусель -->
+        <article class="work-card work-card--powerbi work-block" id="work-powerbi" data-reveal>
+          <span class="work-badge"><span class="lang-ru">Визуализация отчётов</span><span class="lang-en">Reports</span></span>
+          <h3 class="work-block-title">Power BI</h3>
+          <p class="work-subtitle"><span class="lang-ru">Дашборды с KPI, трендами и интерактивными срезами.</span><span class="lang-en">Dashboards with KPIs, trends and interactive filters.</span></p>
+          <div class="powerbi-layout">
+            <div class="powerbi-about">
+              <h4 class="powerbi-about-title"><span class="lang-ru">О дашбордах</span><span class="lang-en">About the dashboards</span></h4>
+              <div class="powerbi-desc lang-ru">
+                <p>Дашборды для анализа продаж и прибыли. Данные из Excel: заказы, выручка, география, категории товаров.</p>
+                <p><strong>Метрики:</strong> Total Sales, Total Profit, Profit Margin %, Total Orders, Average Order Value, Unique Customers — с сравнением к прошлому месяцу. Дополнительно: объём продаж по странам и регионам, по категориям (Technology, Office Supplies, Furniture) и подкатегориям (Phones, Copiers, Chairs, Tables и др.).</p>
+                <p><strong>На экране:</strong> карточки KPI, линейные графики продаж и заказов по датам, карта по странам, топ‑10 стран, столбчатые и круговые диаграммы по регионам и рынкам, waterfall и treemap по категориям. Фильтры по дате и категории — всё интерактивно.</p>
+                <p><strong>Выводы:</strong> видно рост выручки и прибыли, структуру по географии и ассортименту, убыточные позиции (например, Tables). Дашборды помогают отслеживать тренды и принимать решения по ассортименту и регионам.</p>
+              </div>
+              <div class="powerbi-desc lang-en">
+                <p>Dashboards for sales and profit analysis. Data from Excel: orders, revenue, geography, product categories.</p>
+                <p><strong>Metrics:</strong> Total Sales, Total Profit, Profit Margin %, Total Orders, Average Order Value, Unique Customers — with month-over-month comparison. Plus: sales by country and region, by category (Technology, Office Supplies, Furniture) and subcategory (Phones, Copiers, Chairs, Tables, etc.).</p>
+                <p><strong>On screen:</strong> KPI cards, line charts for sales and orders by date, country map, top 10 countries, bar and donut charts by region and market, waterfall and treemap by category. Date and category filters — all interactive.</p>
+                <p><strong>Insights:</strong> clear view of revenue and profit growth, structure by geography and product mix, loss-making items (e.g. Tables). Dashboards help track trends and make decisions on assortment and regions.</p>
+              </div>
+            </div>
+            <div class="powerbi-carousel-wrap">
+              <div class="dashboard-carousel" id="powerbi-carousel" data-autoplay="0">
+                <div class="carousel-track-wrap">
+                  <div class="carousel-track">
+                    <div class="carousel-slide">
+                      <div class="dashboard-preview">
+                        <iframe class="carousel-embed" src="https://app.powerbi.com/view?r=eyJrIjoiY2ViNGYzODMtMTIyOS00Y2E2LTg2Y2UtOTQ0YzY2MjljMjg5IiwidCI6ImQzYWQzYmIxLWJhYWItNDdmZS04NmU4LWRmMzQ4NTIwODZhNyIsImMiOjEwfQ%3D%3D&amp;pageName=ReportSection" title="Power BI — visual" allow="fullscreen"></iframe>
+                        <div class="dashboard-caption">visual</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <span class="carousel-autoplay-hint lang-ru" aria-hidden="true">Клик по точке — слайд</span>
+                <span class="carousel-autoplay-hint lang-en" aria-hidden="true">Click dot for slide</span>
+              </div>
+            </div>
+            <!-- Отдельный блок PNG-карусели -->
+            <section id="powerbi-gallery" class="section">
+                  <h2 class="section-heading"><span class="lang-ru">Галерея Power BI</span><span class="lang-en">Power BI Gallery</span></h2>
+                  <div class="dashboard-carousel dashboard-carousel--png-max" id="powerbi-carousel-png" data-autoplay="0">
+                    <div class="carousel-track-wrap carousel-track-wrap--png-max">
+                      <div class="carousel-track">
+                        <div class="carousel-slide">
+                          <div class="dashboard-preview dashboard-preview--png-max">
+                            <img src="images/powerbi/number_1.png" alt="Power BI — number_1" />
+                          </div>
+                        </div>
+                        <div class="carousel-slide">
+                          <div class="dashboard-preview dashboard-preview--png-max">
+                            <img src="images/powerbi/number_2.png" alt="Power BI — number_2" />
+                          </div>
+                        </div>
+                        <div class="carousel-slide">
+                          <div class="dashboard-preview dashboard-preview--png-max">
+                            <img src="images/powerbi/number_3.png" alt="Power BI — number_3" />
+                          </div>
+                        </div>
+                        <div class="carousel-slide">
+                          <div class="dashboard-preview dashboard-preview--png-max">
+                            <img src="images/powerbi/number_4.png" alt="Power BI — number_4" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="carousel-dots" role="tablist"></div>
+                    <button class="carousel-arrow carousel-arrow--prev" aria-label="Предыдущий слайд">&#8592;</button>
+                    <button class="carousel-arrow carousel-arrow--next" aria-label="Следующий слайд">&#8594;</button>
+                    <span class="carousel-autoplay-hint lang-ru" aria-hidden="true">Клик по точке или стрелке — слайд</span>
+                    <span class="carousel-autoplay-hint lang-en" aria-hidden="true">Click dot or arrow for slide</span>
+                  </div>
+                </section>
+
+            <!-- Минималистичный блок навыков Power BI -->
+            <section class="powerbi-skills-section">
+              <h2 class="powerbi-skills-heading"><span class="lang-ru">Навыки и инструменты Power BI</span><span class="lang-en">Power BI skills & tools</span></h2>
+                  <div class="powerbi-skills-grid">
+                    <div class="powerbi-skill">
+                      <span class="powerbi-skill-accent"></span>
+                      <span class="powerbi-skill-icon">
+                        <!-- DAX SVG -->
+                        <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><rect class="powerbi-icon-bg" x="6" y="6" width="20" height="20" rx="4"/><text x="16" y="22" text-anchor="middle" font-size="12" fill="#25262b">DAX</text></svg>
+                      </span>
+                      <div class="powerbi-skill-title"><span class="lang-ru">DAX</span><span class="lang-en">DAX</span></div>
+                      <div class="powerbi-skill-desc"><span class="lang-ru">Расчётные столбцы и меры</span><span class="lang-en">Calculated columns & measures</span></div>
+                    </div>
+                    <div class="powerbi-skill">
+                      <span class="powerbi-skill-accent"></span>
+                      <span class="powerbi-skill-icon">
+                        <!-- Power Query SVG -->
+                        <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><rect class="powerbi-icon-bg" x="6" y="6" width="20" height="20" rx="4"/><rect x="12" y="12" width="8" height="8" rx="2" fill="#25262b"/></svg>
+                      </span>
+                      <div class="powerbi-skill-title"><span class="lang-ru">Power Query</span><span class="lang-en">Power Query</span></div>
+                      <div class="powerbi-skill-desc"><span class="lang-ru">Подготовка и очистка данных</span><span class="lang-en">Data preparation & cleaning</span></div>
+                    </div>
+                    <div class="powerbi-skill">
+                      <span class="powerbi-skill-accent"></span>
+                      <span class="powerbi-skill-icon">
+                        <!-- Визуализация SVG -->
+                        <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><rect class="powerbi-icon-bg" x="6" y="6" width="20" height="20" rx="4"/><rect x="10" y="20" width="4" height="4" fill="#25262b"/><rect x="16" y="14" width="4" height="10" fill="#25262b"/><rect x="22" y="10" width="4" height="14" fill="#25262b"/></svg>
+                      </span>
+                      <div class="powerbi-skill-title"><span class="lang-ru">Визуализация</span><span class="lang-en">Visualization</span></div>
+                      <div class="powerbi-skill-desc"><span class="lang-ru">Дашборды, графики, KPI</span><span class="lang-en">Dashboards, charts, KPIs</span></div>
+                    </div>
+                    <div class="powerbi-skill">
+                      <span class="powerbi-skill-accent"></span>
+                      <span class="powerbi-skill-icon">
+                        <!-- Интеграция SVG -->
+                        <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><rect class="powerbi-icon-bg" x="6" y="6" width="20" height="20" rx="4"/><rect x="10" y="10" width="12" height="12" rx="2" fill="#25262b"/></svg>
+                      </span>
+                      <div class="powerbi-skill-title"><span class="lang-ru">Интеграция</span><span class="lang-en">Integration</span></div>
+                      <div class="powerbi-skill-desc"><span class="lang-ru">Excel и SQL</span><span class="lang-en">Excel & SQL</span></div>
+                    </div>
+                    <div class="powerbi-skill">
+                      <span class="powerbi-skill-accent"></span>
+                      <span class="powerbi-skill-icon">
+                        <!-- Презентация SVG -->
+                        <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><rect class="powerbi-icon-bg" x="6" y="6" width="20" height="20" rx="4"/><circle cx="16" cy="16" r="6" fill="#25262b"/></svg>
+                      </span>
+                      <div class="powerbi-skill-title"><span class="lang-ru">Презентация данных</span><span class="lang-en">Data presentation</span></div>
+                      <div class="powerbi-skill-desc"><span class="lang-ru">Объяснение результатов</span><span class="lang-en">Explaining results</span></div>
+                    </div>
+                  </div>
+            </section>
+          </div>
+          <a href="#" class="work-cta"><span class="lang-ru">Смотреть отчёты в Power BI →</span><span class="lang-en">View reports in Power BI →</span></a>
+        </article>
+
+        <!-- SQL — в той же стилистике, что и Power BI -->
+        <article class="work-card work-card--sql work-block" id="sql" data-reveal>
+          <span class="work-badge"><span class="lang-ru">Аналитика данных</span><span class="lang-en">Data analytics</span></span>
+          <h3 class="work-block-title">SQL</h3>
+          <p class="work-subtitle"><span class="lang-ru">Запросы в MySQL: агрегаты, оконные функции, джойны — для отчётов и выгрузок.</span><span class="lang-en">MySQL: aggregates, window functions, joins — for reports and exports.</span></p>
+          <!-- Навыки и инструменты SQL — как в Power BI -->
+          <section class="sql-skills-section">
+            <h2 class="sql-skills-heading"><span class="lang-ru">Навыки и инструменты SQL</span><span class="lang-en">SQL skills & tools</span></h2>
+            <div class="sql-skills-grid">
+              <div class="sql-skill">
+                <span class="sql-skill-icon">
+                  <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><rect class="sql-icon-bg" x="6" y="6" width="20" height="20" rx="4"/><text x="16" y="22" text-anchor="middle" font-size="10" fill="#25262b">∑</text></svg>
+                </span>
+                <div class="sql-skill-title"><span class="lang-ru">Агрегаты</span><span class="lang-en">Aggregates</span></div>
+                <div class="sql-skill-desc"><span class="lang-ru">SUM, COUNT, AVG, MIN, MAX</span><span class="lang-en">SUM, COUNT, AVG, MIN, MAX</span></div>
+              </div>
+              <div class="sql-skill">
+                <span class="sql-skill-icon">
+                  <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><rect class="sql-icon-bg" x="6" y="6" width="20" height="20" rx="4"/><rect x="10" y="12" width="12" height="2" rx="1" fill="#25262b"/><rect x="10" y="18" width="8" height="2" rx="1" fill="#25262b"/></svg>
+                </span>
+                <div class="sql-skill-title"><span class="lang-ru">Фильтрация</span><span class="lang-en">Filtering</span></div>
+                <div class="sql-skill-desc"><span class="lang-ru">WHERE, условия, подзапросы</span><span class="lang-en">WHERE, conditions, subqueries</span></div>
+              </div>
+              <div class="sql-skill">
+                <span class="sql-skill-icon">
+                  <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><rect class="sql-icon-bg" x="6" y="6" width="20" height="20" rx="4"/><rect x="8" y="10" width="6" height="12" rx="1" fill="#25262b"/><rect x="18" y="10" width="6" height="12" rx="1" fill="#25262b"/></svg>
+                </span>
+                <div class="sql-skill-title">JOIN</div>
+                <div class="sql-skill-desc"><span class="lang-ru">Объединение таблиц</span><span class="lang-en">Table joins</span></div>
+              </div>
+              <div class="sql-skill">
+                <span class="sql-skill-icon">
+                  <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><rect class="sql-icon-bg" x="6" y="6" width="20" height="20" rx="4"/><rect x="10" y="12" width="4" height="8" fill="#25262b"/><rect x="18" y="10" width="4" height="12" fill="#25262b"/></svg>
+                </span>
+                <div class="sql-skill-title"><span class="lang-ru">Группировка</span><span class="lang-en">Grouping</span></div>
+                <div class="sql-skill-desc"><span class="lang-ru">GROUP BY, HAVING</span><span class="lang-en">GROUP BY, HAVING</span></div>
+              </div>
+            </div>
+          </section>
+          <a href="https://github.com/qpx-hatikrist/sql-examples" target="_blank" rel="noopener" class="work-cta"><span class="lang-ru">Репозиторий с SQL →</span><span class="lang-en">SQL repository →</span></a>
+        </article>
+
+        <!-- Python & ML -->
+        <article class="work-card work-card--python work-block" id="work-python" data-reveal>
+          <span class="work-badge">Data Science</span>
+          <h3 class="work-block-title"><span class="lang-ru">Python & машинное обучение</span><span class="lang-en">Python & ML</span></h3>
+          <p class="work-subtitle"><span class="lang-ru">Визуализация (pandas, seaborn), анализ данных и модели машинного обучения.</span><span class="lang-en">Visualization (pandas, seaborn), data analysis and ML models.</span></p>
+          <h4 class="python-result-title"><span class="lang-ru">Ноутбуки и интерактивные примеры</span><span class="lang-en">Notebooks & interactive examples</span></h4>
+          <div class="python-notebook-wrap" id="python-notebook-wrap">
+            <div class="python-notebook-tabs" role="tablist">
+              <button type="button" class="python-notebook-tab active" role="tab" aria-selected="true" data-python-tab="analysis">
+                <span class="python-tab-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M7 16v-5M12 16v-8M17 16v-2"/></svg></span>
+                <span class="python-tab-label"><span class="lang-ru">Анализ данных</span><span class="lang-en">Data analysis</span></span>
+              </button>
+              <button type="button" class="python-notebook-tab" role="tab" aria-selected="false" data-python-tab="ml">
+                <span class="python-tab-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2L2 8l10 6 10-6L12 2z"/><path d="M2 16l10 6 10-6"/></svg></span>
+                <span class="python-tab-label">Machine Learning</span>
+              </button>
+            </div>
+            <div class="python-notebook-panels">
+              <div class="python-notebook-panel active" data-python-panel="analysis" role="tabpanel">
+                <div class="notebook-launch-block">
+                  <p class="notebook-launch-desc">
+                    <span class="notebook-project-name">Wine ML</span><span class="lang-ru"> EDA и классификация на датасете Wine (sklearn). Random Forest, метрики, важность признаков.</span><span class="lang-en"> EDA and classification on Wine dataset (sklearn). Random Forest, metrics, feature importance.</span>
+                  </p>
+                  <div class="notebook-launch-buttons">
+                    <a href="https://colab.research.google.com/github/qpx-hatikrist/wine-ml-analysis/blob/main/ml_analysis.py" target="_blank" rel="noopener" class="notebook-launch-btn notebook-launch-btn--colab"><span class="lang-ru">Открыть в Google Colab</span><span class="lang-en">Open in Google Colab</span></a>
+                    <a href="https://github.com/qpx-hatikrist/wine-ml-analysis" target="_blank" rel="noopener" class="notebook-launch-cta"><span class="lang-ru">Репозиторий на GitHub →</span><span class="lang-en">Repository on GitHub →</span></a>
+                  </div>
+                </div>
+              </div>
+              <div class="python-notebook-panel" data-python-panel="ml" role="tabpanel" hidden>
+                <div class="notebook-launch-block">
+                  <p class="notebook-launch-desc">
+                    <span class="notebook-project-name">SGD Regression</span><span class="lang-ru"> Сравнение sklearn и реализации с нуля.</span><span class="lang-en"> Sklearn vs from-scratch.</span>
+                  </p>
+                  <div class="notebook-launch-buttons">
+                    <a href="https://colab.research.google.com/github/qpx-hatikrist/from-scratch-py-vs-cpp-ml/blob/main/notebooks/SGD_regression.ipynb" target="_blank" rel="noopener" class="notebook-launch-btn notebook-launch-btn--colab"><span class="lang-ru">Открыть в Google Colab</span><span class="lang-en">Open in Google Colab</span></a>
+                    <a href="https://github.com/qpx-hatikrist/from-scratch-py-vs-cpp-ml" target="_blank" rel="noopener" class="notebook-launch-cta"><span class="lang-ru">Репозиторий на GitHub →</span><span class="lang-en">Repository on GitHub →</span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <section class="python-skills-section">
+            <h2 class="python-skills-heading"><span class="lang-ru">Навыки и инструменты</span><span class="lang-en">Skills & tools</span></h2>
+            <div class="python-skills-grid">
+              <div class="python-skill">
+                <span class="python-skill-icon"><span class="python-icon-bg">pd</span></span>
+                <div class="python-skill-title">pandas</div>
+                <div class="python-skill-desc"><span class="lang-ru">Таблицы, EDA, преобразования</span><span class="lang-en">DataFrames, EDA, transforms</span></div>
+              </div>
+              <div class="python-skill">
+                <span class="python-skill-icon"><span class="python-icon-bg">viz</span></span>
+                <div class="python-skill-title">matplotlib & seaborn</div>
+                <div class="python-skill-desc"><span class="lang-ru">Графики и визуализация</span><span class="lang-en">Charts and visualization</span></div>
+              </div>
+              <div class="python-skill">
+                <span class="python-skill-icon"><span class="python-icon-bg">sk</span></span>
+                <div class="python-skill-title">scikit-learn</div>
+                <div class="python-skill-desc"><span class="lang-ru">Классификация, регрессия, метрики</span><span class="lang-en">Classification, regression, metrics</span></div>
+              </div>
+              <div class="python-skill">
+                <span class="python-skill-icon"><span class="python-icon-bg">nb</span></span>
+                <div class="python-skill-title">Jupyter</div>
+                <div class="python-skill-desc"><span class="lang-ru">Ноутбуки, воспроизводимость</span><span class="lang-en">Notebooks, reproducibility</span></div>
+              </div>
+            </div>
+          </section>
+          <a href="https://github.com/qpx-hatikrist/from-scratch-py-vs-cpp-ml" target="_blank" rel="noopener" class="work-cta"><span class="lang-ru">Открыть на GitHub →</span><span class="lang-en">Open on GitHub →</span></a>
+        </article>
+      </section>
+
+      <section id="contact" class="section contact-section" data-reveal>
+        <h2 class="section-heading"><span class="lang-ru">Контакты</span><span class="lang-en">Contact</span></h2>
+        <div class="contact-links">
+          <a href="mailto:forstudyde@gmail.com" class="contact-link contact-link-email" data-email="forstudyde@gmail.com" aria-label="Email: forstudyde@gmail.com">
+            <span class="contact-email-tooltip">forstudyde@gmail.com</span>
+            <span class="contact-email-label"><span class="lang-ru">Email</span><span class="lang-en">Email</span></span>
+          </a>
+          <a href="https://t.me/hati_qpx" target="_blank" rel="noopener" class="contact-link">Telegram</a>
+          <a href="https://github.com/qpx-hatikrist" target="_blank" rel="noopener" class="contact-link">GitHub</a>
+          <a href="https://linkedin.com/in/username" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2025 · Data Analytics & Data Science</p>
+    </footer>
+
+    <div class="avatar-lightbox" id="avatar-lightbox" aria-hidden="true">
+      <button type="button" class="avatar-lightbox-close" aria-label="Закрыть">&times;</button>
+      <div class="avatar-lightbox-backdrop"></div>
+      <div class="avatar-lightbox-inner">
+        <img src="images/photo/photo_here.jpg" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
