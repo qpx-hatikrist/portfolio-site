@@ -765,7 +765,7 @@ article[id] {
   position: absolute;
   bottom: 100%;
   left: 50%;
-  transform: translateX(calc(-50% + 24px)) translateY(-6px);
+  transform: translateX(calc(-50% + 48px)) translateY(-6px);
   padding: 0.4rem 0.75rem;
   background: var(--bg-elevated);
   color: var(--text);
@@ -783,7 +783,7 @@ article[id] {
 .contact-link-email:hover .contact-email-tooltip {
   opacity: 1;
   visibility: visible;
-  transform: translateX(calc(-50% + 24px)) translateY(-4px);
+  transform: translateX(calc(-50% + 48px)) translateY(-4px);
 }
 .contact-link-email.contact-email-copied .contact-email-label {
   color: var(--sql-green);
