@@ -1987,6 +1987,7 @@ article[id] {
 @media (max-width: 600px) {
   body {
     padding: 1rem 0.75rem 3rem;
+    overflow-x: hidden;
   }
 
   .hero {
@@ -2038,10 +2039,59 @@ article[id] {
   .powerbi-carousel-wrap {
     flex: 1 1 100%;
     width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    min-width: 0;
   }
 
   .powerbi-carousel-wrap .carousel-track-wrap {
     max-height: 200px;
+    width: 100%;
+  }
+
+  .powerbi-about {
+    min-width: 0;
+  }
+
+  /* PNG-галерея на телефоне */
+  .dashboard-carousel--png-max {
+    max-width: 100%;
+    margin: 1.5rem 0;
+    padding: 0;
+  }
+
+  .carousel-track-wrap--png-max {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    max-height: 280px;
+  }
+
+  .dashboard-carousel--png-max .carousel-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1.25rem;
+  }
+
+  .dashboard-carousel--png-max .carousel-arrow--prev {
+    left: 8px;
+  }
+
+  .dashboard-carousel--png-max .carousel-arrow--next {
+    right: 8px;
+  }
+
+  .work-card {
+    overflow: hidden;
+  }
+
+  #powerbi-gallery {
+    overflow: hidden;
+  }
+
+  .dashboard-carousel {
+    max-width: 100%;
   }
 
 }
