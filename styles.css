@@ -2053,17 +2053,26 @@ article[id] {
     min-width: 0;
   }
 
-  /* PNG-галерея на телефоне */
+  /* PNG-галерея на телефоне — убираем фикс. height, иначе aspect-ratio раздувает ширину */
+  #powerbi-gallery {
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+
   .dashboard-carousel--png-max {
     max-width: 100%;
+    width: 100%;
     margin: 1.5rem 0;
     padding: 0;
+    overflow: hidden;
   }
 
   .carousel-track-wrap--png-max {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 160px;
     aspect-ratio: 16 / 9;
     max-height: 280px;
   }
@@ -2080,18 +2089,6 @@ article[id] {
 
   .dashboard-carousel--png-max .carousel-arrow--next {
     right: 8px;
-  }
-
-  .work-card {
-    overflow: hidden;
-  }
-
-  #powerbi-gallery {
-    overflow: hidden;
-  }
-
-  .dashboard-carousel {
-    max-width: 100%;
   }
 
 }
